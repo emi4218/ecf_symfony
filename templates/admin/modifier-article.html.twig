@@ -1,0 +1,14 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Modification article
+{% endblock %}
+
+{% block body %}
+
+	{% if article.id == null %}
+		<h1>Création d'article</h1>
+	{% else %}
+		<h1>Modification de l'article
+			{{article.titre}}</h1>
+	{% endif %}
+	{{form(vueFormulaire)}}{% endblock %}

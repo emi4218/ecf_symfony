@@ -1,0 +1,39 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Administration
+{% endblock %}
+
+{% block body %}
+	<h1>Accueil admin-article</h1>
+
+	<a class="btn btn-primary" href="{{path ('creation_article')}}">Nouvel article</a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Titre</th>
+				<th>Auteur</th>
+				<th>Date</th>
+				<th>Texte de l'article</th>
+				<th>Image</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for article in listeArticle %}
+				<tr>
+					<td>{{article.id}}</td>
+					<td>{{article.titre}}</td>
+					<td>{{article.auteur.prenom}}
+						{{article.auteur.nom}}</td>
+					<td>{{article.date | date('d M Y')}}</td>
+					<td>{{article.description | slice(0,100)}}</td>
+					<td><img style="width:200px;height:200px" src="/uploads/{{article.image}}"/></td>
+					<td>
+						<a class="btn badge bg-success" href="{{path ('modifier_article', {id:article.id})}}">Modifier</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

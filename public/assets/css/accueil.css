@@ -1,0 +1,17 @@
+section {
+    position: relative;
+    margin: auto;
+}
+
+.article {
+    padding: 30px;
+    margin: 10px;
+    border: rgb(97, 173, 97) 1px solid;
+}
+
+.image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+

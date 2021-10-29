@@ -1,0 +1,43 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Administration
+{% endblock %}
+
+{% block body %}
+	<h1>Admin utilisateurs</h1>
+
+	<table class="table">
+		<thead>
+			<th>ID</th>
+			<th>Email</th>
+			<th>Rôle</th>
+			<th></th>
+		</thead>
+
+		<tbody>
+			{# On boucle sur les utilisateurs #}
+			{% for user in listeUsers %}
+				<tr>
+					<td>{{user.id}}</td>
+					<td>{{user.email}}</td>
+					<td>
+						{# On boucle sur les rôles #}
+						{% for role in user.roles %}
+							{% if role == "ROLE_USER" %}
+								Utilisateur
+							{% elseif role == "ROLE_MODERATEUR" %}
+								Moderateur
+							{% elseif role == "ROLE_ADMIN" %}
+								Administrateur
+							{% endif %}
+						{% endfor %}
+					</td>
+					<td>
+						<a href="{{ path('modifier_user', {id:user.id}) }}">Modifier</a>
+					</td>
+				</tr>
+
+			</tbody>
+		{% endfor %}
+	</table>
+{% endblock %}

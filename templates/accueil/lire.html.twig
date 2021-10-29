@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="/assets/css/accueil.css">
+{% endblock %}
+
+{% block body %}
+	<article class="article">
+		<h2>{{article.titre}}</h2>
+		<div>
+			<p>Par
+				{{article.auteur.prenom}}
+				{{article.auteur.nom}}, le
+				{{article.date | date('d M Y')}}</p>
+		</div>
+		<div class="image"><img src="/uploads/{{article.image}}"/></div>
+		<p>{{article.description}}</p>
+
+
+	</article>
+	{{article.commentaires | length}}
+	<section class="commentaire">
+		{% if article.commentaires | length > 0 %}
+			{% for commentaire in article.commentaires %}
+				<div class="article">
+					<p>De
+						{{commentaire.auteur.prenom}}
+						{{commentaire.auteur.nom}}, le
+						{{commentaire.dateCommentaire | date('d M Y')}}</p>
+					<p>{{commentaire.texteCommentaire}}</p>
+				</div>
+			{% endfor %}
+		{% endif %}
+	</section>
+{% endblock %}
